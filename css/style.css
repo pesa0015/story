@@ -1,0 +1,327 @@
+.type-wrap{
+    margin-left: 5px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+
+        /* code for animated blinking cursor */
+        .typed-cursor{
+            opacity: 1;
+            font-weight: 100;
+            -webkit-animation: blink 1.5s infinite;
+            -moz-animation: blink 1.5s infinite;
+            -ms-animation: blink 1.5s infinite;
+            -o-animation: blink 1.5s infinite;
+            animation: blink 1.5s infinite;
+        }
+        @-keyframes blink{
+            0% { opacity: 1; }
+            50% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        @-webkit-keyframes blink{
+            0% { opacity: 1; }
+            50% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        @-moz-keyframes blink{
+            0% { opacity: 1; }
+            50% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        @-ms-keyframes blink{
+            0% { opacity: 1; }
+            50% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        @-o-keyframes blink{
+            0% { opacity: 1; }
+            50% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+h4#results-text {
+  
+}
+ul#results {
+  padding: 0px;
+  list-style: none;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  -webkit-box-shadow: rgba(0, 0, 0, .15) 0 1px 3px;
+  -moz-box-shadow: rgba(0,0,0,.15) 0 1px 3px;
+  box-shadow: rgba(0, 0, 0, .15) 0 1px 3px;
+}
+ul#results li {
+  padding-top: 8px;
+  cursor: pointer;
+}
+ul#results li:hover {
+  border-bottom: 1px solid #cdcdcd;
+  transition: background-color .3s ease-in-out;
+  -moz-transition: background-color .3s ease-in-out;
+  -webkit-transition: background-color .3s ease-in-out;
+}
+ul#results li:last-child {
+  
+}
+ul#results li h3, ul#results li h4 {
+  transition: color .3s ease-in-out;
+  -moz-transition: color .3s ease-in-out;
+  -webkit-transition: color .3s ease-in-out;
+  
+  line-height: 1.2em;
+}
+ul#results li:hover h3, ul#results li:hover h4  {
+  
+}
+html, body {
+  font-family: Lato, Arial, Helvetica, sans-serif;
+  height: 100%;
+  margin: 0px;
+}
+.navbar-brand {
+  font-family: 'Berkshire Swash', 'Courgette', Arial, cursive;
+}
+#page-logo-login-register {
+  font-family: 'Berkshire Swash', 'Courgette', Arial, cursive;
+  font-size: 5em;
+  text-align: center;
+  margin-bottom: 15px;
+  text-shadow: 2px 3px black;
+}
+#login-register-link {
+  
+}
+[class^='ion'] {
+    font-size: 3em;
+}
+#thumbsup {
+  color: #4C924C;
+}
+#thumbsdown {
+  color: #CD3700;
+}
+.ion-thumbsup, .ion-thumbsdown {
+    opacity: 0.5;
+    filter: Alpha(opacity=50);
+    transition: 0.5s;
+}
+.ion-thumbsup:hover, .ion-thumbsdown:hover {
+    opacity: 1;
+    filter: Alpha(opacity=100);
+}
+.ion-navicon {
+    margin-left: -5%;
+}
+.ion-ios7-plus {
+    font-size: 1.5em;
+    padding: 0.5em;
+    vertical-align: middle;
+}
+.ion-information-circled {
+    font-size: 1.5em;
+    padding: 0.5em;
+    vertical-align: middle;
+}
+#info {
+    margin-top: -5%;
+    margin-left: 5%;
+    margin-bottom: 5%;
+}
+#wrapper {
+    width: 85%;
+    min-height: 100%;
+    padding-top: 5%;
+    margin-left: auto;
+    margin-right: auto;
+}
+#flexbox {
+    display: -webkit-flex;
+   display:         flex;
+   -webkit-flex-flow: row;
+           flex-flow: row;
+}
+#flexbox > #existing-stories {
+   
+   -webkit-order: 1;
+           order: 1;
+    width: 30%;
+   }
+#flexbox > #new-story {
+   
+   -webkit-order: 2;
+           order: 2;
+    width: 30%;
+    margin-right: 10%;
+   }
+#flexbox > #stories-finished {
+   
+   -webkit-order: 3;
+           order: 3;
+    width: 20%;
+   }
+#flexbox > #continue-story {
+    -webkit-order: 2;
+           order: 2;
+   }
+#charError {
+    text-align: center;
+}
+#error {
+    color: red;
+    border-bottom: 1px solid red;
+    padding-left: 15px;
+    
+}
+#correct {
+    color: green;
+    border-bottom: 1px solid green;
+    padding-left: 15px;
+    padding-bottom: 15px;
+    
+}
+#app {
+    width: 100%;
+}
+#login-register-container {
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+input[type=text],
+input[type=password],
+input[type=submit],
+input[type=email],
+input[type=file],
+textarea {
+    font-size: 15px;
+    width: 300px;
+    display: block;
+    padding: 15px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    border: none;
+}
+input[type=file] {
+  color: white;
+}
+textarea {
+    resize: none;
+}
+textarea:focus {
+    outline: none;
+}
+#charCounter {
+    text-align: center;
+}
+input[type=text],
+input[type=password] {
+}
+input[type=text],
+input[type=password]:focus {
+    outline: none;
+}
+input[type=submit] {
+    height: 50px;
+    background-color: #959EA7; /* #ADD8E6 */
+    transition: 0.1s;
+}
+input[type=submit]:hover {
+    background-color: #FFFFFF     ; /* #d1edc8 #98A0AC #6191bf #959EA7 */
+}
+.spoiler {
+    display: none;
+}
+footer {
+    font-family: 'Berkshire Swash', 'Eagle Lake', 'Courgette', cursive;
+    font-size: 1.5em;
+    background: #223140;
+    padding: 1.5em;
+    text-align: center;
+    clear: both;
+    position: relative;
+}
+
+/*
+ * STYLE FOR STORY.PHP
+ */
+
+#story-content {
+    padding: 1em;
+}
+#thumbs_up:hover, #thumbs_down:hover {
+    color: lightblue;
+    cursor: pointer;
+}
+#page-logo {
+    font-family: 'Berkshire Swash', 'Eagle Lake', 'Courgette', cursive;
+    font-size: 10em;
+    text-align: center;
+    margin: 0px;
+    padding: 0px;
+}
+
+@media only screen 
+and (max-width: 900px) {
+    #wrapper {
+    width: 90%;
+    }
+    #flexbox {
+    -webkit-flex-flow: column;
+            flex-flow: column;
+            flex-direction: column;
+    }
+    #flexbox > #existing-stories {
+   
+   -webkit-order: 2;
+           order: 2;
+           width: 90%;
+   }
+#flexbox > #new-story {
+   
+   -webkit-order: 1;
+           order: 1;
+           width: 90%;
+   }
+#flexbox > #stories-finished {
+   
+   -webkit-order: 3;
+           order: 3;
+           width: 90%;
+   }
+#flexbox > #continue-story {
+    -webkit-order: 2;
+           order: 2;
+           width: 90%;
+   }
+    
+
+}
+
+@media only screen 
+and (max-width: 480px) {
+    
+    #wrapper {
+     width: 100%;
+    }
+    #page-logo-login-register {
+     font-size: 3.5em;
+    }
+    #login-register-container {
+     width: 270px;
+    }
+    input[type=text],
+    input[type=password],
+    input[type=submit],
+    input[type=email],
+    input[type=file],
+    textarea {
+    font-size: 15px;
+    width: 270px;
+    }
+    
+}
