@@ -12,7 +12,7 @@
       <li><a href="home.php">Översikt</a></li>
       <li><a href="my_stories.php">Mina stories</a></li>
       <li><a href="search.php">Sök författare</a></li>
-      
+      <li><a href="subjects.php">Ämnen</a></li>
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $_SESSION['user']; ?> <b class="caret"></b></a>
         <ul class="dropdown-menu">
