@@ -6,6 +6,8 @@ session_start();
 
 @$story = (int)$_GET['story'];
 
+sqlInsert('UPDATE story SET views = views + 1 WHERE story_id = "' . $story . '"');
+
 ?>
 
 <!DOCTYPE html>
@@ -15,14 +17,17 @@ session_start();
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <title>True Story</title>
   <link rel="stylesheet" type="text/css" href="css/style.css">
-  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="vendor/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="vendor/css/ionicons.min.css">
   <link rel="shortcut icon" href="img/Story-favicon-3.png">
-  <link rel="stylesheet" type="text/css" href="http://code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css">
-  <link href='http://fonts.googleapis.com/css?family=Eagle+Lake|Courgette|Berkshire+Swash+Lato' rel='stylesheet' type='text/css'>
-
-  <!-- JQUERY -->
-  <script src="js/jquery-1.11.1.min.js"></script>
-  <script src="js/jquery.confirm.min.js"></script>
+  <link href='http://fonts.googleapis.com/css?family=Courgette|Berkshire+Swash+Lato' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Cinzel+Decorative' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Dancing+Script' rel='stylesheet' type='text/css'>
+  <link href="http://fonts.googleapis.com/css?family=Tangerine" rel="stylesheet" type="text/css">
+  <link href='http://fonts.googleapis.com/css?family=Niconne' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Damion' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Norican' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Meddon' rel='stylesheet' type='text/css'>
 
   <style>
   a {
@@ -57,6 +62,49 @@ session_start();
 	<div id="wrapper">
 
 		<h1 id="page-logo">T</h1>
+
+		<?
+
+		$writers = sqlSelect(
+			'SELECT DISTINCT(users.username) 
+			FROM `users` 
+			WHERE users.user_id 
+				IN (
+					SELECT story_writers.user_id 
+					FROM story_writers 
+					WHERE story_writers.story_id = "' . $story . '"
+					);');
+
+		$views = sqlSelect(
+			'SELECT views
+			FROM `story` 
+			WHERE story_id = "' . $story . '";');
+
+		?>
+
+		<div style="text-align: center;">
+		<h2><?=$story; ?></h2>
+		<div>Av</div>
+		<div>
+			<?
+			if ($writers) {
+				foreach ($writers as $writer) {
+					?>
+					<div><?=$writer['username']; ?></div>
+					<?
+				}
+			}
+			?>
+		</div>
+		<div><?
+			if ($views[0]['views'] == 0) {
+				echo 0;
+			}
+			else {
+				echo $views[0]['views'];
+			} 
+			?> Visningar</div>
+		</div>
 
 			<hr />
 
@@ -154,6 +202,12 @@ session_start();
 			
 			</div> <!-- END #STORY-CONTENT -->
 
+<!-- JQUERY -->
+  <script src="vendor/js/jquery-1.11.1.min.js"></script>
+  <!-- BOOTSTRAP -->
+  <script src="vendor/js/bootstrap.min.js"></script>
+  <script src="vendor/js/jquery.confirm.min.js"></script>
+  
 			<script>
 			$(".complexConfirm").confirm({
     title:"Du är inte inloggad",
@@ -172,7 +226,5 @@ session_start();
 					nav.parentNode.removeChild(nav);
 				}
 			</script>
-			<!-- BOOTSTRAP -->
-  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
 
 <?php require 'footer.php'; ?>

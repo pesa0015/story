@@ -2,11 +2,13 @@
 
 require 'functions/sql_helpers.php';
 
+$user = sqlSelect('SELECT username FROM users WHERE user_id = ' . $_GET['user']);
+
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <title>True Story</title>
@@ -22,13 +24,19 @@ require 'functions/sql_helpers.php';
   <link href='http://fonts.googleapis.com/css?family=Damion' rel='stylesheet' type='text/css'>
   <link href='http://fonts.googleapis.com/css?family=Norican' rel='stylesheet' type='text/css'>
   <link href='http://fonts.googleapis.com/css?family=Meddon' rel='stylesheet' type='text/css'>
-  <script src="vendor/js/jquery-1.11.1.min.js"></script>
-  <script src="vendor/js/bootstrap.min.js"></script>
-  <script src="vendor/js/jquery.confirm.min.js"></script>
-  <script src="vendor/js/jquery.noty.packaged.min.js"></script>
+
+  <!-- JQUERY -->
+  <script src="js/jquery-1.11.1.min.js"></script>
+
 </head>
 <body>
-
-<?php require 'nav.php'; ?>
-
-  <div id="wrapper">
+	<div id="wrapper">
+		<?=$user[0]['username']; ?>
+		<form action="" method="post">
+			<input type="password"><br />
+			<input type="submit" name="submit" value="Ändra lösenord">
+		</form>
+		<a href="index.php">Avbryt</a>
+	</div>
+</body>
+</html>

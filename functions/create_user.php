@@ -10,18 +10,19 @@ $errorEmail = '';
 $errorPasswordRepeat = '';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-	$user = mysqli_real_escape_string($conn, $_POST['user']);
-	$pass = mysqli_real_escape_string($conn, $_POST['password']);
-	$pass_repeat = mysqli_real_escape_string($conn, $_POST['password_repeat']);
-	$email = mysqli_real_escape_string($conn, $_POST['email']);
+	$user = sqlEscape($_POST['user']);
+	$pass = sqlEscape($_POST['password']);
+	$pass_repeat = sqlEscape($_POST['password_repeat']);
+	$email = sqlEscape($_POST['email']);
 
 	$errors = array();
 
+	/*
+
 	if (strlen($user) >= 4) {
-		$sql_username = "SELECT username FROM `users` WHERE username = '$user'";
-		$result_username = mysqli_query($conn, $sql_username);
-		$username = mysqli_fetch_array($result_username);
-		if (!empty($username['username'])) {
+		$sql_username = sqlSelect("SELECT username FROM `users` WHERE username = '$user';");
+		
+		if (!empty($sql_username[0]['username'])) {
 			array_push($errors, "Användarnamnet är upptaget");
 		}
 
@@ -35,13 +36,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$errorPasswordRepeat = "Lösenordet matchar inte";
 	}
 
-	if (count($errors) == 0) {
-  		$pass = password_hash($_POST['password'], PASSWORD_DEFAULT);
-		$sql = "INSERT INTO `story_creator`.`users` (`user_id`, `username`, `password`, `email`) VALUES (NULL, '$user', '$pass', '$email');";
+	*/
 
-		if ($conn->query($sql) === TRUE) {
-			echo '<span class="ion-checkmark-circled"></span><p>Nytt konto skapat!</p>';
-		}
+	if (strlen($user) >= 3 && strlen($pass) >= 3 && filter_var($email, FILTER_VALIDATE_EMAIL)) {
+  		$pass = password_hash($pass, PASSWORD_DEFAULT);
+		$sql = sqlInsert("INSERT INTO users (user_id, username, password, email, registration_date) VALUES (NULL, '$user', '$pass', '$email', now());");
+
+		echo '<span class="ion-checkmark-circled"></span><p>Nytt konto skapat!</p>';
 
   	}
 

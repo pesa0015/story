@@ -2,8 +2,18 @@
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   
-  $user = login($_POST['user'], $_POST['password']);
+  $check = login($_POST['user'], $_POST['password']);
+
+  if (isset($check)) {
+    if ($check == 'Fel användarnamn') {
+      $check = $check[0];
+    }
+    if ($check == 'Fel lösenord') {
+      $check = $check[0];
+    }
     
+  }
+
   /*
 
   if ($error == 1) {

@@ -133,8 +133,8 @@ function login($user, $password) {
   	$errors = array();
   
   	if ($result->num_rows == 0) {
-  		$error = 1;
     	array_push($errors, 'Fel användarnamn');
+    	return $errors;
   	}
     
   	if ($result->num_rows == 1) {
@@ -145,23 +145,21 @@ function login($user, $password) {
     		$_SESSION['user_id'] = $row['user_id'];
 		    $_SESSION['user'] = $row['username'];
 
-		    if ($_GET['story']) {
-		    	echo '<script>window.location.replace("story.php?story=' . $_GET['story'] . '");</script>';
+		    sqlInsert('INSERT INTO users_activity (id, user_id, login) VALUES (NULL, ' . $_SESSION['user_id'] . ', now());');
+
+		    if (isset($_GET['story'])) {
+		    	header('location: story.php?story=' . $_GET['story']);
 		    }
 
 		    else {
-		    	echo '<script>window.location.replace("home.php");</script>';
+		    	header('location: home.php');
 			}
     	}
     
     	else {
-      		$error = 1;
     		array_push($errors, 'Fel lösenord');
+    		return $errors;
     	}
-    }
-
-    if ($error == 1) {
-    	echo '<h3 style="color: #CD3700;">' . $errors[0] . '</h3>';
     }
 }
 

@@ -10,9 +10,6 @@ require 'header.php';
 
 ?>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script src="js/profile_live_update.js"></script>
-
 <h1>Profil</h1>
 
 <?php
@@ -66,7 +63,7 @@ if ($sql_img) {
 
 	<form action="" method="post">
 		Personlig text
-		<textarea rows="5" id="update" name="update" autocomplete="off" style="resize: vertical;"><?
+		<textarea rows="5" id="update" name="update" style="resize: vertical;"><?
 
 			if ($sql_text) {
 				foreach ($sql_text as $text) {
@@ -78,5 +75,7 @@ if ($sql_img) {
 		</textarea><br />
 		<input type="submit" name="edit_text" value="Spara"><br />
 	</form>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 
 <?php require 'footer.php'; ?>

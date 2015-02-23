@@ -18,3 +18,6 @@ require 'header.php';
     <ul id="results">
     </ul>
 </form>
+
+</body>
+</html>

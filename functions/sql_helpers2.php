@@ -1,6 +1,6 @@
 <?php
 
-// For functions pages, inside the functions folder
+// For main pages, outside the functions folder
 
 require 'connect.php';
 
@@ -14,6 +14,8 @@ function sqlSelect($query) {
 	if ($conn->connect_error) {
 	    die("Connection failed: " . $conn->connect_error);
 	}
+
+	$conn->set_charset('utf8mb4');
 
 	$result = mysqli_query($conn, $query);
 
@@ -68,7 +70,7 @@ function sqlInsert($query) {
 
 	// Check connection
 	if (mysqli_errno($conn)) {
-		echo "Failed: " . mysqli_error($conn);
+		echo $query . '<br />' . mysqli_error($conn);
 		$error = 1;
 	}
 
@@ -87,7 +89,7 @@ function sqlUpdate($query) {
 
 	// Check connection
 	if (mysqli_errno($conn)) {
-		echo "Failed: " . mysqli_error($conn);
+		echo "Failed: " . mysqli_error($conn) . '<br />';
 		$error = 1;
 	}
 
@@ -131,7 +133,8 @@ function login($user, $password) {
   	$errors = array();
   
   	if ($result->num_rows == 0) {
-    	$userError = 'Fel användarnamn';
+    	array_push($errors, 'Fel användarnamn');
+    	return $errors;
   	}
     
   	if ($result->num_rows == 1) {
@@ -140,14 +143,37 @@ function login($user, $password) {
     
     	if (password_verify($password, $pwd)) {
     		$_SESSION['user_id'] = $row['user_id'];
-    $_SESSION['user'] = $user;
-    header('location: home.php'); 
+		    $_SESSION['user'] = $row['username'];
+
+		    sqlInsert('INSERT INTO users_activity (id, user_id, login) VALUES (NULL, ' . $_SESSION['user_id'] . ', now());');
+
+		    if (isset($_GET['story'])) {
+		    	header('location: story.php?story=' . $_GET['story']);
+		    }
+
+		    else {
+		    	header('location: home.php');
+			}
     	}
     
     	else {
-      		$passwordError = 'Fel lösenord';
+    		array_push($errors, 'Fel lösenord');
+    		return $errors;
     	}
     }
+}
+
+function last_id() {
+
+	// Create connection
+	$conn = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+	// Check connection
+	if ($conn->connect_error) {
+	    die("Connection failed: " . $conn->connect_error);
+	}
+
+	return $conn->insert_id;
+
 }
 
 ?>
